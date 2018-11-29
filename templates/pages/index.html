@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+
+{% block title %} | Welcome {% endblock %}
+
+{% block content %}
+
+<!-- Showcase -->
+<section id="showcase">
+  <div class="container text-center">
+    <div class="home-search p-5">
+      <div class="overlay p-5">
+        <h1 class="display-4 mb-4">Escape Rooms Search!!!</h1>
+        <p class="lead">
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Recusandae
+          quas, asperiores eveniet vel nostrum magnam voluptatum tempore!
+          Consectetur, id commodi!
+        </p>
+        <div class="search">
+          <form action="{% url 'search' %}">
+            <!-- Form Row 1 -->
+            <div class="form-row">
+              <div class="col-md-4 mb-3">
+                <label class="sr-only">Keywords</label>
+                <input
+                  type="text"
+                  name="keywords"
+                  class="form-control"
+                  placeholder="Keyword"
+                />
+              </div>
+
+              <div class="col-md-4 mb-3">
+                <label class="sr-only">City</label>
+                <input
+                  type="text"
+                  name="city"
+                  class="form-control"
+                  placeholder="City"
+                />
+              </div>
+
+              <div class="col-md-4 mb-3">
+                <label class="sr-only">Category</label>
+                <select name="category" class="form-control">
+                  <option selected="true" disabled="disabled"
+                    >Category (All)</option
+                  >
+                  {% for key, value in category_choices %}
+                  <option value="{{ key }}">{{ value }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+            <!-- Form Row 2 -->
+            <div class="form-row">
+              <div class="col-md mb-3">
+                <label class="sr-only">Duration</label>
+                <select name="duration" class="form-control">
+                  {% for key, value in duration_choices %}
+                  <option value="{{ key }}">{{ value }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+            <button class="btn btn-outline-light btn-block mt-4" type="submit">
+              Search
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<br>
+<!-- Alert -->
+{% include 'partials/_alerts.html' %}
+
+<!-- Rooms -->
+<section id="listings" class="py-5">
+  <div class="container">
+    <h3 class="text-center mb-3">Latest Rooms</h3>
+    <div class="row">
+      {% if rooms %} {% for room in rooms %}
+      <div class="col-md-6 col-lg-4 mb-4">
+        <div class="card listing-preview">
+          <img
+            class="projectIcon"
+            src="{{ room.photo_main.url }}"
+            alt=""
+            style="height: 180px; width: 100%;"
+          />
+          <div class="card-body">
+            <div class="listing-heading text-center">
+              <h4 class="text-primary">{{ room.title }}</h4>
+              <p>{{ room.company }}</p>
+            </div>
+            <hr />
+            <div class="row py-2 text-secondary">
+              <div class="col-12">Difficulty: {{ room.difficulty }}</div>
+            </div>
+            <div class="row py-2 text-secondary">
+              <div class="col-12">Duration: {{ room.duration }}</div>
+            </div>
+            <div class="row text-secondary pb-2">
+              <div class="col-12">Category: {{ room.get_category_display }}</div>
+            </div>
+            <hr />
+            <div class="row py-2 text-secondary">
+              <div class="col-12">Users rating: 5 stars</div>
+            </div>
+
+            <hr />
+            <a href="{% url 'room' room.id %}" class="btn btn-primary btn-block"
+              >More Info</a
+            >
+          </div>
+        </div>
+      </div>
+      {% endfor %} {% else %}
+      <div class="com-md-12"><p>No Rooms Available</p></div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% endblock %}

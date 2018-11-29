@@ -1,0 +1,127 @@
+{% extends 'base.html' %} 
+
+{% block title %} | {{ room.title }} {% endblock %}
+
+{% load humanize %}
+
+{% block content %}
+
+<section id="showcase-inner" class="py-5 text-white">
+  <div class="container">
+    <div class="row text-center">
+      <div class="col-md-12">
+        <h1 class="display-4">{{ room.title }}</h1>
+        <p class="lead">{{ room.company }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Breadcrumb -->
+<section id="bc" class="mt-3">
+  <div class="container">
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'rooms' %}">Rooms</a></li>
+        <li class="breadcrumb-item active">{{ room.title }}</li>
+      </ol>
+    </nav>
+  </div>
+</section>
+
+<!-- Listing -->
+<section id="listing" class="py-4">
+  <div class="container">
+    <a href="{% url 'rooms' %}" class="btn btn-light mb-4">Back To Rooms</a>
+    <div class="row">
+      <div class="col-md-9">
+        <!-- Home Main Image -->
+        <img
+          src="{{ room.photo_main.url }}"
+          alt=""
+          class="img-main img-fluid mb-3"
+        />
+        <!-- Thumbnails -->
+
+        <div class="row mb-5 thumbs">
+          {% if room.photo_1 %}
+          <div class="col-md-2">
+            <a href="{{ room.photo_1.url }}" data-lightbox="home-images">
+              <img src="{{ room.photo_1.url }}" alt="" class="img-fluid" />
+            </a>
+          </div>
+          {% endif %} {% if room.photo_2 %}
+          <div class="col-md-2">
+            <a href="{{ room.photo_2.url }}" data-lightbox="home-images">
+              <img src="{{ room.photo_2.url }}" alt="" class="img-fluid" />
+            </a>
+          </div>
+          {% endif %} {% if room.photo_3 %}
+          <div class="col-md-2">
+            <a href="{{ room.photo_3.url }}" data-lightbox="home-images">
+              <img src="{{ room.photo_3.url }}" alt="" class="img-fluid" />
+            </a>
+          </div>
+          {% endif %} {% if room.photo_4 %}
+          <div class="col-md-2">
+            <a href="{{ room.photo_4.url }}" data-lightbox="home-images">
+              <img src="{{ room.photo_4.url }}" alt="" class="img-fluid" />
+            </a>
+          </div>
+          {% endif %} {% if room.photo_5 %}
+          <div class="col-md-2">
+            <a href="{{ room.photo_5.url }}" data-lightbox="home-images">
+              <img src="{{ room.photo_5.url }}" alt="" class="img-fluid" />
+            </a>
+          </div>
+          {% endif %} {% if room.photo_6 %}
+          <div class="col-md-2">
+            <a href="{{ room.photo_6.url }}" data-lightbox="home-images">
+              <img src="{{ room.photo_6.url }}" alt="" class="img-fluid" />
+            </a>
+          </div>
+          {% endif %}
+        </div>
+        <!-- Fields -->
+        <div class="row mb-5 fields">
+          <div class="col-md-6">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item text-secondary">
+                Name: <span class="float-right">{{ room.title }}</span>
+              </li>
+              <li class="list-group-item text-secondary">
+                Duration: <span class="float-right">{{ room.duration }}</span>
+              </li>
+              <li class="list-group-item text-secondary">
+                Difficulty:
+                <span class="float-right">{{ room.difficulty }}</span>
+              </li>
+              <li class="list-group-item text-secondary">
+                Category: <span class="float-right">{{ room.category }}</span>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item text-secondary">
+                <i class="fas fa-calendar"></i> Listing Date:
+                <span class="float-right">{{ room.list_date }}</span>
+              </li>
+              <li class="list-group-item text-secondary">
+                Company: <span class="float-right">{{ room.company }}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Description -->
+        <div class="row mb-5">
+          <div class="col-md-12">{{ room.description }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

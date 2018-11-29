@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+
+{% block title %} | Browse Rooms {% endblock %}
+
+{% block content %}
+
+<!-- Rooms -->
+<section id="rooms" class="py-4">
+    <div class="container">
+        <div class="row">
+            {% if rooms %}
+            {% for room in rooms %}
+            <!-- Listing 1 -->
+
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card listing-preview">
+                    <img class="projectIcon" src="{{ room.photo_main.url }}" alt="" style="height: 180px; width: 100%;">
+                    <div class="card-body">
+                        <div class="listing-heading text-center">
+                            <h4 class="text-primary">{{ room.title }}</h4>
+                            <p>
+                                {{ room.company }}
+                            </p>
+                        </div>
+                        <hr>
+                        <div class="row py-2 text-secondary">
+                            <div class="col-12">
+                                Difficulty: {{ room.difficulty }}
+                            </div>
+                        </div>
+                        <div class="row py-2 text-secondary">
+                            <div class="col-12">
+                                Duration: {{ room.get_duration_display }}
+                            </div>
+                        </div>
+                        <div class="row text-secondary pb-2">
+                            <div class="col-12">
+                                Category: {{ room.get_category_display }}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row py-2 text-secondary">
+                            <div class="col-12">
+                                Users rating: 5 stars
+                            </div>
+                        </div>
+
+                        <hr>
+                        <a href="{% url 'room' room.id %}" class="btn btn-primary btn-block">More Info</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% else %}
+            <div class="col-md-12">
+                <p>No Rooms Available</p>
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                {% if rooms.has_other_pages %}
+                <ul class="pagination justify-content-center">
+                    {% if rooms.has_previous %}
+                    <li class="page-item">
+                        <a href="?page={{rooms.previous_page_number}}" class="page-link">
+                            &laquo;
+                        </a>
+                    </li>
+                    {% else %}
+                    <li class="page-item disabled">
+                        <a class="page-link">
+                            &laquo;
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% for i in rooms.paginator.page_range %}
+                    {% if rooms.number == i %}
+                    <li class="page-item active">
+                        <a class="page-link">
+                            {{i}}
+                        </a>
+                    </li>
+                    {% else %}
+                    <li class="page-item">
+                        <a href="?page={{i}}" class="page-link">
+                            {{i}}
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% endfor %}
+                    {% if rooms.has_next %}
+                    <li class="page-item">
+                        <a href="?page={{rooms.next_page_number}}" class="page-link">
+                            &raquo;
+                        </a>
+                    </li>
+                    {% else %}
+                    <li class="page-item disabled">
+                        <a class="page-link">
+                            &raquo;
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+                {% endif %}
+            </div>
+        </div>
+
+</section>
+
+{% endblock %}
