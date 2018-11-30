@@ -91,14 +91,14 @@
                 Name: <span class="float-right">{{ room.title }}</span>
               </li>
               <li class="list-group-item text-secondary">
-                Duration: <span class="float-right">{{ room.duration }}</span>
+                Duration: <span class="float-right">{{ room.get_duration_display }}</span>
               </li>
               <li class="list-group-item text-secondary">
                 Difficulty:
                 <span class="float-right">{{ room.difficulty }}</span>
               </li>
               <li class="list-group-item text-secondary">
-                Category: <span class="float-right">{{ room.category }}</span>
+                Category: <span class="float-right">{{ room.get_category_display }}</span>
               </li>
             </ul>
           </div>

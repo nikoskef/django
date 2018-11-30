@@ -65,10 +65,13 @@
                 <h4>{{ company.name }}</h4>
                 <hr>
                 <p>
-                    <i class="fas fa-phone"></i>{{ company.phone }}
+                    <i class="fas fa-phone"> </i> {{ company.phone }}
                 </p>
                 <p>
-                    <i class="fas fa-envelope-open"></i> {{ company.email }}
+                    <i class="fas fa-envelope-open"> </i> {{ company.email }}
+                </p>
+                <p>
+                    <i class="fas fa-globe"></i> </i> <a href='http://{{ company.website }}' rel="noreferrer noopener" target="_blank">{{ company.website }}</a>
                 </p>
             </div>
             {% endfor %}
