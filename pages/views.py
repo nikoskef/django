@@ -6,12 +6,14 @@ from companies.models import Company
 
 
 def index(request):
-    rooms = Room.objects.order_by('-list_date').filter(is_published=True)[:3]
+    rooms2 = Room.objects.order_by('-list_date').filter(is_published=True)[:2]
+    rooms3 = Room.objects.order_by('-list_date').filter(is_published=True)[2:5]
     category_choices = Room.CATEGORY_CHOICES
     duration_choices = Room.DURATION_CHOICES
 
     context = {
-        'rooms': rooms,
+        'rooms2': rooms2,
+        'rooms3': rooms3,
         'category_choices': category_choices,
         'duration_choices': duration_choices
     }

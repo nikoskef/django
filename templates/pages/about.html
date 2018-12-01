@@ -56,11 +56,11 @@
 <!-- Team -->
 <section id="team" class="py-5">
     <div class="container">
-        <h2 class="text-center">Companies</h2>
-        <div class="row text-center">
+        <h2 class="text-center text-white">Companies</h2>
+        <div class="row text-center text-white">
             {% if companies %}
             {% for company in companies %}
-            <div class="col-md-4">
+            <div class="col-md-4 text-white">
                 <img src="{{ company.photo.url }}" alt="" style="height: 180px; width: 100%;">
                 <h4>{{ company.name }}</h4>
                 <hr>
@@ -71,7 +71,7 @@
                     <i class="fas fa-envelope-open"> </i> {{ company.email }}
                 </p>
                 <p>
-                    <i class="fas fa-globe"></i> </i> <a href='http://{{ company.website }}' rel="noreferrer noopener" target="_blank">{{ company.website }}</a>
+                    <i class="fas fa-globe"></i> </i> <a class="text-white" href='http://{{ company.website }}' rel="noreferrer noopener" target="_blank">{{ company.website }}</a>
                 </p>
             </div>
             {% endfor %}

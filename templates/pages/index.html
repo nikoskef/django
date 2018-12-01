@@ -76,51 +76,65 @@
 {% include 'partials/_alerts.html' %}
 
 <!-- Rooms -->
-<section id="listings" class="py-5">
-  <div class="container">
-    <h3 class="text-center mb-3">Latest Rooms</h3>
-    <div class="row">
-      {% if rooms %} {% for room in rooms %}
-      <div class="col-md-6 col-lg-4 mb-4">
-        <div class="card listing-preview">
-          <img
-            class="projectIcon"
-            src="{{ room.photo_main.url }}"
-            alt=""
-            style="height: 180px; width: 100%;"
-          />
-          <div class="card-body">
-            <div class="listing-heading text-center">
-              <h4 class="text-primary">{{ room.title }}</h4>
-              <p>{{ room.company }}</p>
-            </div>
-            <hr />
-            <div class="row py-2 text-secondary">
-              <div class="col-12">Difficulty: {{ room.difficulty }}</div>
-            </div>
-            <div class="row py-2 text-secondary">
-              <div class="col-12">Duration: {{ room.get_duration_display }}</div>
-            </div>
-            <div class="row text-secondary pb-2">
-              <div class="col-12">Category: {{ room.get_category_display }}</div>
-            </div>
-            <hr />
-            <div class="row py-2 text-secondary">
-              <div class="col-12">Users rating: 5 stars</div>
-            </div>
 
-            <hr />
-            <a href="{% url 'room' room.id %}" class="btn btn-primary btn-block"
-              >More Info</a
-            >
-          </div>
+<section>
+  <div class="container">
+      <div class="row">
+        <div class="col text-white text-center">
+          <h2>Room list</h2>
         </div>
       </div>
-      {% endfor %} {% else %}
-      <div class="com-md-12"><p>No Rooms Available</p></div>
+      {% if rooms2 %}
+
+      <div class="row">
+      
+        {% for room in rooms2 %}
+      
+          <div class="col-lg-6 col-sm-12 mb-4">
+              <a href="{% url 'room' room.id %}">
+                <img
+                class="img-fluid custom1"
+                src="{{ room.photo_main.url }}"
+                alt="" 
+                           
+                />
+                <div class="row">
+                    <div class="col text-white">                      
+                      <h3>{{room.title}}</h3>
+                    </div>
+                </div>
+              
+                
+            </a>              
+          </div>  
+        {% endfor %}        
+      </div>
+      <div class="row">
+          {% for room in rooms3 %}
+      
+          <div class="col-lg-4 col-sm-12 mb-4">
+              <a href="{% url 'room' room.id %}">
+                <img
+                class="img-fluid custom1"
+                src="{{ room.photo_main.url }}"
+                alt=""
+                
+                          
+                />
+              </a>
+              <div class="caption">
+                  {{ room.title }}
+              </div> 
+              
+          </div>  
+        {% endfor %}        
+          
+      </div>
+      {% else %}
+        <h1>No Rooms Available</h1>
       {% endif %}
-    </div>
   </div>
 </section>
+
 
 {% endblock %}

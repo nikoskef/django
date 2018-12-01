@@ -1,3 +1,23 @@
+.custom1 {
+  width: 34rem;
+  height: 280px;
+}
+
+
+.caption {
+  position: absolute;
+  bottom: 0%;   
+  background-color:rgba(0, 0, 0, 0.8);
+  left: 0;
+  color: white;
+  font-size: 20px;
+  width: 100%;
+}
+
+body {
+  background-color: black;
+}
+
 .btn-secondary {
   color: #fff !important; }
 
@@ -59,7 +79,7 @@ img {
     left: 0;
     min-height: 100%;
     width: 100%;
-    background: rgba(8, 31, 245, 0.514); }
+    }
   #showcase-inner.showcase-search {
     min-height: 270px; }
 
@@ -74,6 +94,7 @@ img {
     padding-top: 4rem; }
     #showcase h1 {
       font-size: 40px; }
+ 
   .hide-md-down {
     display: none; } }
 
