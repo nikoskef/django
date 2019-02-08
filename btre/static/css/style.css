@@ -3,7 +3,10 @@
   height: 280px;
 }
 
-
+.toptext {
+  position: relative;
+  top: 0%;
+}
 .caption {
   position: absolute;
   bottom: 0%;   

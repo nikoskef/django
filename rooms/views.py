@@ -22,9 +22,13 @@ def index(request):
 
 def room(request, room_id):
     room = get_object_or_404(Room, pk=room_id)
+    ratings = {
+        'item': 3
+    }
 
     context = {
-        'room': room
+        'room': room,
+        'ratings': ratings
     }
 
     return render(request, 'rooms/room.html', context)

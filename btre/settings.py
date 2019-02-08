@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    
     'pages.apps.PagesConfig',
     'rooms.apps.RoomsConfig',
     'companies.apps.CompaniesConfig',
@@ -71,6 +72,8 @@ TEMPLATES = [
         },
     },
 ]
+
+
 
 WSGI_APPLICATION = 'btre.wsgi.application'
 

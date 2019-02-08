@@ -1,8 +1,4 @@
-{% extends 'base.html' %}
-
-{% block title %} | Welcome {% endblock %}
-
-{% block content %}
+{% extends 'base.html' %} {% block title %} | Welcome {% endblock %} {% block content %}
 
 <!-- Showcase -->
 <section id="showcase">
@@ -11,9 +7,8 @@
       <div class="overlay p-5">
         <h1 class="display-4 mb-4">Escape Rooms Search!!!</h1>
         <p class="lead">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Recusandae
-          quas, asperiores eveniet vel nostrum magnam voluptatum tempore!
-          Consectetur, id commodi!
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Recusandae quas, asperiores
+          eveniet vel nostrum magnam voluptatum tempore! Consectetur, id commodi!
         </p>
         <div class="search">
           <form action="{% url 'search' %}">
@@ -21,30 +16,18 @@
             <div class="form-row">
               <div class="col-md-4 mb-3">
                 <label class="sr-only">Keywords</label>
-                <input
-                  type="text"
-                  name="keywords"
-                  class="form-control"
-                  placeholder="Keyword"
-                />
+                <input type="text" name="keywords" class="form-control" placeholder="Keyword" />
               </div>
 
               <div class="col-md-4 mb-3">
                 <label class="sr-only">City</label>
-                <input
-                  type="text"
-                  name="city"
-                  class="form-control"
-                  placeholder="City"
-                />
+                <input type="text" name="city" class="form-control" placeholder="City" />
               </div>
 
               <div class="col-md-4 mb-3">
                 <label class="sr-only">Category</label>
                 <select name="category" class="form-control">
-                  <option selected="true" disabled="disabled"
-                    >Category (All)</option
-                  >
+                  <option selected="true" disabled="disabled">Category (All)</option>
                   {% for key, value in category_choices %}
                   <option value="{{ key }}">{{ value }}</option>
                   {% endfor %}
@@ -62,16 +45,14 @@
                 </select>
               </div>
             </div>
-            <button class="btn btn-outline-light btn-block mt-4" type="submit">
-              Search
-            </button>
+            <button class="btn btn-outline-light btn-block mt-4" type="submit">Search</button>
           </form>
         </div>
       </div>
     </div>
   </div>
 </section>
-<br>
+<br />
 <!-- Alert -->
 {% include 'partials/_alerts.html' %}
 
@@ -79,62 +60,45 @@
 
 <section>
   <div class="container">
-      <div class="row">
-        <div class="col text-white text-center">
-          <h2>Room list</h2>
+    <div class="row">
+      <div class="col text-white text-center"><h2>Latest Rooms</h2></div>
+    </div>
+    {% if rooms2 %}
+
+    <div class="row">
+      {% for room in rooms2 %}
+
+      <div class="col-lg-6 col-sm-12 mb-4">
+        <a href="{% url 'room' room.id %}">
+          <img class="img-fluid custom1" src="{{ room.photo_main.url }}" alt="" />
+          <div class="row">
+            <div class="col text-white caption">
+              <h3>{{ room.title }}</h3>
+            </div>
+          </div>
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="row ">
+      {% for room in rooms3 %}
+
+      <div class="col-lg-4 col-sm-12 mb-4 ">
+        <a href="{% url 'room' room.id %}">
+          <img class="img-fluid custom1 " src="{{ room.photo_main.url }}" alt="" />
+        </a>
+        <div class="row">
+          <div class="col text-white caption">
+            <h3>{{ room.title }}</h3>
+          </div>
         </div>
       </div>
-      {% if rooms2 %}
-
-      <div class="row">
-      
-        {% for room in rooms2 %}
-      
-          <div class="col-lg-6 col-sm-12 mb-4">
-              <a href="{% url 'room' room.id %}">
-                <img
-                class="img-fluid custom1"
-                src="{{ room.photo_main.url }}"
-                alt="" 
-                           
-                />
-                <div class="row">
-                    <div class="col text-white">                      
-                      <h3>{{room.title}}</h3>
-                    </div>
-                </div>
-              
-                
-            </a>              
-          </div>  
-        {% endfor %}        
-      </div>
-      <div class="row">
-          {% for room in rooms3 %}
-      
-          <div class="col-lg-4 col-sm-12 mb-4">
-              <a href="{% url 'room' room.id %}">
-                <img
-                class="img-fluid custom1"
-                src="{{ room.photo_main.url }}"
-                alt=""
-                
-                          
-                />
-              </a>
-              <div class="caption">
-                  {{ room.title }}
-              </div> 
-              
-          </div>  
-        {% endfor %}        
-          
-      </div>
-      {% else %}
-        <h1>No Rooms Available</h1>
-      {% endif %}
+      {% endfor %}
+    </div>
+    {% else %}
+    <h1>No Rooms Available</h1>
+    {% endif %}
   </div>
 </section>
-
 
 {% endblock %}
